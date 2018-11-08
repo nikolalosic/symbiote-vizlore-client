@@ -1,9 +1,10 @@
-package com.symbiote.vizlore.services.examples;
+package com.symbiote.vizlore.services.examples.l1;
 
 import com.symbiote.vizlore.Constants;
+import com.symbiote.vizlore.L1ClientWithGuestToken;
 import com.symbiote.vizlore.L2ClientWithHomeToken;
 
-public class OpenDoorLogs {
+public class GuestCallLogs {
     public static void main(String[] args) {
         // Printing output
         String body = "[\n" +
@@ -15,10 +16,10 @@ public class OpenDoorLogs {
                 "  }\n" +
                 "]";
         System.out.println(body);
-        String result = L2ClientWithHomeToken.invokeService(
-                "OpenDoorLogs",
+        String result = L1ClientWithGuestToken.invokeService(
+                "GuestCallLogs",
                 body,
-                Constants.FEDERATION_ID);
+                Constants.PLATFORM_ID_VIZLORE);
         try {
             System.out.println(result);
         } catch (Exception ex) {

@@ -1,4 +1,4 @@
-package com.symbiote.vizlore.sensors.examples;
+package com.symbiote.vizlore.sensors.examples.l1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

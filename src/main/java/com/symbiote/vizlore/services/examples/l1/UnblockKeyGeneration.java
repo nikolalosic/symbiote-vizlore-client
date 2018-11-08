@@ -1,6 +1,7 @@
-package com.symbiote.vizlore.services.examples;
+package com.symbiote.vizlore.services.examples.l1;
 
 import com.symbiote.vizlore.Constants;
+import com.symbiote.vizlore.L1ClientWithGuestToken;
 import com.symbiote.vizlore.L2ClientWithHomeToken;
 
 public class UnblockKeyGeneration {
@@ -12,8 +13,8 @@ public class UnblockKeyGeneration {
                 "  }\n" +
                 "]";
         System.out.println(body);
-        String result = L2ClientWithHomeToken.invokeService("UnblockVirtualKeyService",
-                body, Constants.FEDERATION_ID);
+        String result = L1ClientWithGuestToken.invokeService("UnblockVirtualKeyService",
+                body, Constants.PLATFORM_ID_VIZLORE);
         System.out.println(result);
     }
 }

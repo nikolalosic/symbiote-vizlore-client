@@ -1,4 +1,4 @@
-package com.symbiote.vizlore.services.examples;
+package com.symbiote.vizlore.services.examples.l2;
 
 import com.symbiote.vizlore.Constants;
 import com.symbiote.vizlore.L2ClientWithHomeToken;
