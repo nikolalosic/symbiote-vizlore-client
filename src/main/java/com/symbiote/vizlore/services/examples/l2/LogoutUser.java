@@ -3,7 +3,7 @@ package com.symbiote.vizlore.services.examples.l2;
 import com.symbiote.vizlore.Constants;
 import com.symbiote.vizlore.L2ClientWithHomeToken;
 
-public class DeleteApp {
+public class LogoutUser {
     public static void main(String[] args) {
 
         String body = "[\n" +

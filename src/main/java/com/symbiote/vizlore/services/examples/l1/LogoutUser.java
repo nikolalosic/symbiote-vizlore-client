@@ -4,7 +4,7 @@ import com.symbiote.vizlore.Constants;
 import com.symbiote.vizlore.L1ClientWithGuestToken;
 import com.symbiote.vizlore.L2ClientWithHomeToken;
 
-public class DeleteApp {
+public class LogoutUser {
     public static void main(String[] args) {
 
         String body = "[\n" +
