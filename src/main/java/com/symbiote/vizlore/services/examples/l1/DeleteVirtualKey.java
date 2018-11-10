@@ -9,7 +9,7 @@ public class DeleteVirtualKey {
 
         String body = "[\n" +
                 "  {\n" +
-                "      \"key_id\" : \"5693417237512192\"\n" +
+                "      \"key_id\" : \"5711832983535616\"\n" +
                 "  }\n" +
                 "]";
         System.out.println(body);
