@@ -17,13 +17,13 @@ public class L2ClientWithHomeToken {
     public static String invokeService(String resourceName, String body, String federationId) {
         System.out.println("Started invoking service " + resourceName + " in federation " + federationId);
 
-        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID_VIZLORE, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
+        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
 
         // The set of platforms from which we are going to request credentials for our requests
-        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID_VIZLORE));
+        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID));
 
         // Get the necessary component clients
-        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID_VIZLORE);
+        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID);
         RAPClient rapClient = factory.getRapClient();
 
         // Create the request
@@ -32,7 +32,7 @@ public class L2ClientWithHomeToken {
                 .names(Arrays.asList(resourceName))
                 .build();
 
-        System.out.println("Searching the Platform Registry of platform: " + Constants.PLATFORM_ID_VIZLORE);
+        System.out.println("Searching the Platform Registry of platform: " + Constants.PLATFORM_ID);
         FederationSearchResult result = searchClient.search(registryQuery, false, platformIds);
 
         if (result.getResources().size() == 0) {
@@ -51,13 +51,13 @@ public class L2ClientWithHomeToken {
     public static List<Observation> getTopObservations(String resourceName, Integer number, String federationId) {
         System.out.println("Started getting top observations of resource" + resourceName + " in federation " + federationId);
 
-        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID_VIZLORE, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
+        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
 
         // The set of platforms from which we are going to request credentials for our requests
-        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID_VIZLORE));
+        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID));
 
         // Get the necessary component clients
-        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID_VIZLORE);
+        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID);
         RAPClient rapClient = factory.getRapClient();
 
         // Create the request
@@ -66,7 +66,7 @@ public class L2ClientWithHomeToken {
                 .names(Arrays.asList(resourceName))
                 .build();
 
-        System.out.println("Searching the Platform Registry of platform: " + Constants.PLATFORM_ID_VIZLORE);
+        System.out.println("Searching the Platform Registry of platform: " + Constants.PLATFORM_ID);
         FederationSearchResult result = searchClient.search(registryQuery, false, platformIds);
 
 
@@ -85,13 +85,13 @@ public class L2ClientWithHomeToken {
 
     public static Observation getLatestObservations(String resourceName, String fedId) {
         System.out.println("Started getting latest observations of resource" + resourceName + " in federation " + fedId);
-        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID_VIZLORE, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
+        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
 
         // The set of platforms from which we are going to request credentials for our requests
-        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID_VIZLORE));
+        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID));
 
         // Get the necessary component clients
-        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID_VIZLORE);
+        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID);
         RAPClient rapClient = factory.getRapClient();
 
         // Create the request
@@ -100,7 +100,7 @@ public class L2ClientWithHomeToken {
                 .names(Arrays.asList(resourceName))
                 .build();
 
-        System.out.println("Searching the Platform Registry of platform: " + Constants.PLATFORM_ID_VIZLORE);
+        System.out.println("Searching the Platform Registry of platform: " + Constants.PLATFORM_ID);
         FederationSearchResult result = searchClient.search(registryQuery, false, platformIds);
 
         if (result.getResources().size() == 0) {
@@ -118,12 +118,12 @@ public class L2ClientWithHomeToken {
 
     public static void listAllResourcesInFederation(String fedId) {
         System.out.println("Started listing resources in federation " + fedId);
-        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID_VIZLORE, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
+        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
         // The set of platforms from which we are going to request credentials for our requests
-        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID_VIZLORE));
+        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID));
 
         // Get the necessary component clients
-        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID_VIZLORE);
+        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID);
 
         // Create the request
         PlatformRegistryQuery registryQuery = new PlatformRegistryQuery.Builder()
@@ -140,13 +140,13 @@ public class L2ClientWithHomeToken {
 
     public static void printResourceInformation(String resourceName, String fedId) {
         System.out.println("Printing resource information started");
-        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID_VIZLORE, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
+        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
 
         // The set of platforms from which we are going to request credentials for our requests
-        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID_VIZLORE));
+        Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID));
 
         // Get the necessary component clients
-        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID_VIZLORE);
+        PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID);
 
         // Create the request
         PlatformRegistryQuery registryQuery = new PlatformRegistryQuery.Builder()
@@ -158,7 +158,7 @@ public class L2ClientWithHomeToken {
         ObjectMapper om = new ObjectMapper();
         om.enable(SerializationFeature.INDENT_OUTPUT);
 
-        System.out.println("Searching the Platform Registry of platform: " + Constants.PLATFORM_ID_VIZLORE);
+        System.out.println("Searching the Platform Registry of platform: " + Constants.PLATFORM_ID);
         FederationSearchResult result = searchClient.search(registryQuery, false, platformIds);
         if (result.getResources().size() == 0) {
             System.out.println("Could not find resource " + resourceName + " in federation " + fedId);
