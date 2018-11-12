@@ -17,10 +17,12 @@ public class L2ClientWithHomeToken {
     public static String invokeService(String resourceName, String body, String federationId) {
         System.out.println("Started invoking service " + resourceName + " in federation " + federationId);
 
-        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID, Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
+        AbstractSymbIoTeClientFactory factory = SymbioteUtils.getClientFactory(Constants.PLATFORM_ID,
+                Constants.USERNAME, Constants.PASSWORD, Constants.CLIENT_ID);
 
         // The set of platforms from which we are going to request credentials for our requests
         Set<String> platformIds = new HashSet<>(Collections.singletonList(Constants.PLATFORM_ID));
+        //   platformIds.add(Constants.PLATFORM_ID_VIZLORE);
 
         // Get the necessary component clients
         PRClient searchClient = factory.getPRClient(Constants.PLATFORM_ID);
@@ -29,6 +31,7 @@ public class L2ClientWithHomeToken {
         // Create the request
         PlatformRegistryQuery registryQuery = new PlatformRegistryQuery.Builder()
                 .federationIds(Collections.singletonList(federationId))
+
                 .names(Arrays.asList(resourceName))
                 .build();
 
@@ -38,12 +41,19 @@ public class L2ClientWithHomeToken {
         if (result.getResources().size() == 0) {
             System.out.println("Could not find resource " + resourceName + " in federation " + federationId);
         } else {
-            System.out.println("Trying to access resource " + result.getResources().get(0).getAggregationId() + " in federation " + federationId);
-            String res = rapClient.invokeService(result.getResources().get(0).getFederatedResourceInfoMap().get(federationId).getoDataUrl(), body, true, platformIds);
-            System.out.println("Finished invoking service " + resourceName + " in federation " + federationId);
-            return res;
-        }
+            for (FederatedResource fr : result.getResources()) {
+                try {
+                    System.out.println("Trying to access resource " + fr.getAggregationId() + " in federation " + federationId);
+                    String res = rapClient.invokeService(
+                            fr.getFederatedResourceInfoMap()
+                                    .get(federationId).getoDataUrl(), body, true, platformIds);
+                    System.out.println("Finished invoking service " + resourceName + " in federation " + federationId);
+                    return res;
+                } catch (Exception ex) {
 
+                }
+            }
+        }
         System.out.println("Error invoking service " + resourceName + " in federation " + federationId);
         return null;
     }
@@ -73,12 +83,17 @@ public class L2ClientWithHomeToken {
         if (result.getResources().size() == 0) {
             System.out.println("Could not find resource " + resourceName + " in federation " + federationId);
         } else {
-            System.out.println("Trying to access resource " + result.getResources().get(0).getAggregationId() + " in federation " + federationId);
-            List<Observation> observation = rapClient.getTopObservations(result.getResources().get(0).getFederatedResourceInfoMap().get(federationId).getoDataUrl(), number, true, platformIds);
-            System.out.println("Finished getting latest observations of resource" + resourceName + " in federation " + federationId);
-            return observation;
-        }
+            for (FederatedResource fr : result.getResources()) {
+                try {
+                    System.out.println("Trying to access resource " + fr.getAggregationId() + " in federation " + federationId);
+                    List<Observation> observation = rapClient.getTopObservations(fr.getFederatedResourceInfoMap().get(federationId).getoDataUrl(), number, true, platformIds);
+                    System.out.println("Finished getting latest observations of resource" + resourceName + " in federation " + federationId);
+                    return observation;
+                } catch (Exception ex) {
 
+                }
+            }
+        }
         System.out.println("Error getting top observations of resource" + resourceName + " in federation " + federationId);
         return null;
     }
@@ -106,10 +121,16 @@ public class L2ClientWithHomeToken {
         if (result.getResources().size() == 0) {
             System.out.println("Could not find resources " + resourceName + " in federation " + fedId);
         } else {
-            System.out.println("Trying to access resource " + result.getResources().get(0).getAggregationId() + " in federation " + fedId);
-            Observation observation = rapClient.getLatestObservation(result.getResources().get(0).getFederatedResourceInfoMap().get(fedId).getoDataUrl(), true, platformIds);
-            System.out.println("Finished getting latest observations of resource" + resourceName + " in federation " + fedId);
-            return observation;
+            for (FederatedResource fr : result.getResources()) {
+                try {
+                    System.out.println("Trying to access resource " + fr.getAggregationId() + " in federation " + fedId);
+                    Observation observation = rapClient.getLatestObservation(fr.getFederatedResourceInfoMap().get(fedId).getoDataUrl(), true, platformIds);
+                    System.out.println("Finished getting latest observations of resource" + resourceName + " in federation " + fedId);
+                    return observation;
+                } catch (Exception ex) {
+
+                }
+            }
         }
         System.out.println("Error getting latest observations of resource" + resourceName + " in federation " + fedId);
         return null;
